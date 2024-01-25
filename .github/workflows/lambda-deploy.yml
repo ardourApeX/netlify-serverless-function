@@ -23,10 +23,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Deploying on netlify
-        uses: South-Paw/action-netlify-deploy@v1.2.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
-          build-dir: './dist'
-          comment-on-commit: true
+          run: npx netlify-cli deploy --prod
+          env:
+            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
