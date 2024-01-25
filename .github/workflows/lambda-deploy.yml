@@ -28,6 +28,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
-          publish-dir: './build'
+          build-dir: './build'
           functions-dir: './functions'
           comment-on-commit: true
