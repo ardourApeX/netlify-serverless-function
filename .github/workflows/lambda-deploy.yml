@@ -7,22 +7,25 @@ on:
       - main
     paths:
       - src/**
+      - functions/**
 
 jobs:
   build:
     runs-on: ubuntu-latest
+     strategy:
+      matrix:
+        node-version: [18.x]
     steps:
-      - uses: actions/checkout@v2
-      - name: Using Node.js 16.x
-        uses: actions/setup-node@v2
+     - name: Checkout github repository
+        uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          cache-dependency-path: package-lock.json
-      - name: Installing dependencies
-        run: npm install
-      - name: Building optimized file
-        run: yarn build
+          cache-dependency-path: 'package-lock.json'
+      - run: npm ci
+      - run: npm run build
       - name: Deploying on netlify
         uses: South-Paw/action-netlify-deploy@v1.2.0
         with:
