@@ -5,6 +5,7 @@ const api = express();
 
 const router = Router();
 router.get('/hello', (req, res) => res.send('Hello World from serverless!'));
+router.get('/auth', (req, res) => res.send('Hello Auth from serverless!'));
 
 api.use('/api/', router);
 
