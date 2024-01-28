@@ -3,13 +3,15 @@ import serverless from 'serverless-http';
 
 const api = express();
 console.log('api', api);
-const router = Router();
-router.use('/', (req, res, next) => {
+
+api.use('/', (req, res, next) => {
 	console.log('i am inside server');
 	next();
 });
-router.get('/hello', (req, res) => res.send('Hello World!'));
+const router = Router();
 
-api.use('/api/', router);
+router.get('/', (req, res) => res.send('Hello World!'));
+
+api.use('/', router);
 
 export const handler = serverless(api);
