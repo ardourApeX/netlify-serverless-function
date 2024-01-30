@@ -3,7 +3,7 @@
   publish = "build"
 
 [functions]
-  external_node_modules = ["express"]
+  external_node_modules = ["express", "serverless-http"]
   node_bundler = "esbuild"
   
 [[redirects]]
