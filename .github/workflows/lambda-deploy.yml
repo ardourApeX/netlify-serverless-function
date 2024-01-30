@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feat/test-express
 
 jobs:
   build:
@@ -23,9 +24,12 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Deploying on netlify
-        uses: South-Paw/action-netlify-deploy@v1.2.0
+        uses: jsmrcaga/action-netlify-deploy@v2.0.0
         with:
           github-token: ${{ secrets.GT_TOKEN }}
-          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
-      - run: sudo netlify deploy --prod
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_DEPLOY_TO_PROD: true
+          build_directory: './build'
+          functions_directory: 'netlify/functions/'
+          comment-on-commit: true
