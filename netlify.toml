@@ -1,7 +1,5 @@
 [build]
-    command = "npm run build"
     functions = "functions/"
-    publish = "build"
 
 [functions]
   external_node_modules = ["express","serverless-http"]
